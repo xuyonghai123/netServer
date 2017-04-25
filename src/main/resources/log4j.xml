@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <param name="threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
+        </layout>
+    </appender>
+    <!--class定义日志记录器-->
+    <appender name="DEBUG"
+              class="org.apache.log4j.RollingFileAppender">
+        <!--相对于应用服务器的输出路径,应用服务器的路径指定在common包中指定-->
+        <param name="File" value="log/netServer-debug.log" />
+        <!--是否追加写入文件 true-是 false-否,此部分不建议改动-->
+        <param name="Append" value="true" />
+        <!--当日志文件超过定义数值则自动备分一个新文件-->
+        <!--可以定义为1MB,1KB,1GB这样的类型,也可以定义为1000则表示1000字节-->
+        <param name="MaxFileSize" value="1MB" />
+        <!--备分文件最多的数量-->
+        <param name="MaxBackupIndex" value="10" />
+        <!--输出的日志文件格式,根据操作系统编码指定-->
+        <param name="Encoding" value="UTF8" />
+        <!--按日期备分的间隔,如下表示按天,按分钟则可定义为yyyy-MM-dd HH:mm,依次类推-->
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <!--监控狗是否启动true-启动,false-不启动-->
+        <!--主要是为了防止业务量过小长期将日志缓存在内存中,而不在文件中写入-->
+        <!--大数据量,大并发的情况下建议设置为false-->
+        <param name="Interrupted" value="true" />
+        <!--监控狗检测时间,单位为毫秒-->
+        <param name="Delay" value="10000" />
+        <!--log4j的打印日志布局,可参考相关log4j文档设置-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
+        </layout>
+        <!--日志级别过滤器-->
+        <!--DHMMinLevel表示最小的级别,DHMMaxLevel表示最大的级别,建议不做改动-->
+        <!--<filter class="com.coship.dhm.common.log.filter.DHMLevelRangeFilter">-->
+            <!--<param name="DHMMinLevel" value="DEBUG" />-->
+            <!--<param name="DHMMaxLevel" value="DEBUG" />-->
+        <!--</filter>-->
+    </appender>
+
+    <appender name="INFO"
+              class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="log/netServer-info.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="Encoding" value="UTF8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="Interrupted" value="true" />
+        <param name="Delay" value="10000" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
+        </layout>
+        <!--<filter class="com.coship.dhm.common.log.filter.DHMLevelRangeFilter">-->
+            <!--<param name="DHMMinLevel" value="INFO" />-->
+            <!--<param name="DHMMaxLevel" value="INFO" />-->
+        <!--</filter>-->
+    </appender>
+
+    <appender name="WARN"
+              class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="log/netServer-warn.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="Encoding" value="UTF8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="Interrupted" value="true" />
+        <param name="Delay" value="10000" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
+        </layout>
+        <!--<filter class="com.coship.dhm.common.log.filter.DHMLevelRangeFilter">-->
+            <!--<param name="DHMMinLevel" value="WARN" />-->
+            <!--<param name="DHMMaxLevel" value="WARN" />-->
+        <!--</filter>-->
+    </appender>
+
+    <appender name="ERROR"
+              class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="log/netServer-error.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="Encoding" value="UTF8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="Interrupted" value="true" />
+        <param name="Delay" value="10000" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
+        </layout>
+        <!--<filter class="com.coship.dhm.common.log.filter.DHMLevelRangeFilter">-->
+            <!--<param name="DHMMinLevel" value="ERROR" />-->
+            <!--<param name="DHMMaxLevel" value="ERROR" />-->
+        <!--</filter>-->
+    </appender>
+
+    <!--业务日志记录器-->
+    <appender name="SERVICE"
+              class="org.apache.log4j.RollingFileAppender">
+        <!--业务日志缓冲内容的大小,根据业务量调整,业务量越大则调整越大,反之则小-->
+        <param name="Buffer" value="1" />
+        <!--向数据库写入日志是否自动提交,true-是,false-否-->
+        <param name="Commit" value="true" />
+        <!--得到insert语句的句柄类,无须改动-->
+        <param name="Sqlhandler"
+               value="com.coship.adp.ams.common.log.ADPLogSQLHandler" />
+        <!--得到数据库连接的句柄类,无须改动-->
+        <param name="Connector"
+               value="com.coship.adp.ams.common.log.C3p0PoolConnectionHandler" />
+        <param name="Interrupted" value="false" />
+        <!--监控狗是否启动true-启动,false-不启动-->
+        <!--主要是为了防止业务量过小长期将日志缓存在内存中,而不在文件中写入-->
+        <!--大数据量,大并发的情况下建议设置为false-->
+        <param name="Delay" value="10000" />
+        <!--log4j的打印日志布局,可参考相关log4j文档设置-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
+        </layout>
+        <!--日志级别过滤器-->
+        <!--DHMMinLevel表示最小的级别,DHMMaxLevel表示最大的级别,建议不做改动-->
+        <!--<filter class="com.coship.dhm.common.log.filter.DHMLevelRangeFilter">-->
+            <!--<param name="DHMMinLevel" value="SERVICE" />-->
+            <!--<param name="DHMMaxLevel" value="SERVICE" />-->
+        <!--</filter>-->
+    </appender>
+
+    <!--业务日志SYSLOG记录器-->
+    <!--<appender name="SYSLOG4J" class="org.apache.log4j.RollingFileAppender">-->
+        <!--<param name="Protocol" value="udp"/>-->
+        <!--<param name="Facility" value="local0"/>-->
+        <!--<param name="host" value="127.0.0.1"/>-->
+        <!--<param name="port" value="514"/>-->
+        <!--<param name="ident" value="ams"/>-->
+        <!--<layout class="org.apache.log4j.PatternLayout">-->
+            <!--<param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />-->
+        <!--</layout>-->
+        <!--<filter class="com.coship.dhm.common.log.filter.DHMLevelRangeFilter">-->
+            <!--<param name="DHMMinLevel" value="SERVICE" />-->
+            <!--<param name="DHMMaxLevel" value="SERVICE" />-->
+        <!--</filter>-->
+    <!--</appender>-->
+
+
+    <!-- ==================输入日志，用于开发阶段使用====================== -->
+    <logger name="com.coship.adp.ams">
+        <level value="info" />
+    </logger>
+    <logger name="org.apache">
+        <level value="info" />
+    </logger>
+    <logger name="org.quartz">
+        <level value="info" />
+    </logger>
+    <logger name="org.hibernate">
+        <level value="info" />
+    </logger>
+    <logger name="com.opensymphony">
+        <level value="info" />
+    </logger>
+    <logger name="org.springframework">
+        <level value="info" />
+    </logger>
+    <!-- ==================输入日志，用于开发阶段使用====================== -->
+    <root>
+        <!--定义日志的最低输出级别-->
+        <priority value="INFO" />
+        <!--引用的日志记录器-->
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DEBUG" />
+        <appender-ref ref="INFO" />
+        <appender-ref ref="WARN" />
+        <appender-ref ref="ERROR" />
+        <appender-ref ref="SERVICE" />
+        <appender-ref ref="SYSLOG4J" />
+    </root>
+
+</log4j:configuration>
