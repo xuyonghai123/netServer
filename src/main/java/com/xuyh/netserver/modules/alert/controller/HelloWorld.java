@@ -15,13 +15,18 @@ public class HelloWorld {
     private Logger logger = Logger.getLogger(HelloWorld.class.getName());
 
     @Autowired
-    private UserService userService;
+    private  UserService userService;
 
     @RequestMapping("/helloworld")
-    public String index(){
+    public String home(){
 
         logger.info("记录日志信息，将在控制台输出");
         userService.insertUser();
         return  "success";
+    }
+
+    @RequestMapping("/netserver")
+    public String index (){
+        return  "index";
     }
 }

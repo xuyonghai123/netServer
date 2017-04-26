@@ -7,7 +7,7 @@ import java.io.Serializable;
  **/
 public class UserBean implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
 

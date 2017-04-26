@@ -12,7 +12,7 @@ import java.io.Reader;
  * Created by Thinkpad on 17/04/13.
  **/
 public class DBTools {
-    public static SqlSessionFactory sessionFactory;
+    private static SqlSessionFactory sessionFactory;
 
     static {
         Reader reader = null;
