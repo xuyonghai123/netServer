@@ -1,10 +1,12 @@
 package com.xuyh.netserver.modules.alert.beans;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
  * Created by Thinkpad on 17/04/13.
  **/
+@XmlRootElement
 public class UserBean implements Serializable {
 
     private static final long serialVersionUID = 1L;

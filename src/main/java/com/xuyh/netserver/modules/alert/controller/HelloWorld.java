@@ -23,40 +23,38 @@ public class HelloWorld {
     @Autowired
     private  UserService userService;
 
-    @RequestMapping("/helloworld")
+    @RequestMapping("/index")
     public String home(){
 
         logger.info("记录日志信息，将在控制台输出");
         userService.insertUser();
-        return  "success";
+        return  "index";
     }
 
     @RequestMapping("/netserver")
     public String index (){
-        return  "index";
+        return  "login";
     }
 
     @ResponseBody
     @RequestMapping( "/json")
-    public String json (){
+    public UserBean json (){
         UserBean userBean = new UserBean();
         userBean.setId(1);
         userBean.setUsername("xuyh");
         userBean.setPassword("123456");
         userBean.setAccount((double) 123);
-
-        return userBean.toString();
+        return userBean;
     }
 
     @ResponseBody
-    @RequestMapping("/json1")
+    @RequestMapping( "/json1")
     public UserBean json1 (){
         UserBean userBean = new UserBean();
-        userBean.setId(1);
-        userBean.setUsername("xuyh");
-        userBean.setPassword("123456");
-        userBean.setAccount((double) 123);
-        System.out.println("userbean:"+userBean);
+        userBean.setId(2);
+        userBean.setUsername("yhj");
+        userBean.setPassword("987654");
+        userBean.setAccount((double) 345);
         return  userBean;
     }
 

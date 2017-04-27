@@ -5,7 +5,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>主页</title>
+    <link rel="shortcut icon" href="${ctxStatic}/img/favicon.ico">
     <!-- jQuery 2.2.3 -->
     <script type="text/javascript" src="${ctxStatic}/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

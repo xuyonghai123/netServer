@@ -28,7 +28,7 @@
         <property name="suffix" value="${web.view.suffix}"/>
     </bean>
 
-    <mvc:view-controller path="/" view-name="redirect:${web.view.index}"/>
+    <mvc:view-controller path="/" view-name="redirect:/netserver"/>
 
     <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler />
