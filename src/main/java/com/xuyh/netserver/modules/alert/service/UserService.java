@@ -27,7 +27,7 @@ public class UserService {
     public  void insertUser() {
         SqlSession session = DBTools.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        UserBean user = new UserBean("一", "123123", 1000.0);
+        UserBean user = new UserBean("Xuyh", "xyh316251940", 100.0);
         try {
             mapper.insertUser(user);
             System.out.println(user.toString());
