@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--<import resource="import.xml"/>-->
+    <!--<bean id="helloid" name="helloImp" class="spring.HelloImp">-->
+        <!--<constructor-arg index="0" value="Hello SpringTest"/>-->
+    <!--</bean>-->
+    <!--<bean name="bean1" class="spring.HelloImp"/>-->
+
+    <!--<alias name="helloid" alias="bean3"/>-->
+
+    <!--<bean id="helloWorldService" class="spring.aop.HelloWorldService"/>-->
+
+    <!--<bean id="aspect" class="spring.aop.HelloWorldAspect"/>-->
+    <!--<aop:config>-->
+        <!--<aop:pointcut id="pointcut" expression="execution(* spring.aop.*.*(..)) and args(name,age)"/>-->
+        <!--<aop:aspect ref="aspect">-->
+            <!--<aop:before pointcut-ref="pointcut" method="beforeHandler" arg-names="name,age"/>-->
+            <!--<aop:after pointcut-ref="pointcut" method="afterHandler"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+    <context:component-scan base-package="spring.aop">
+        <context:include-filter type="annotation"
+                                expression="org.aspectj.lang.annotation.Aspect"/>
+    </context:component-scan>
+
+    <aop:aspectj-autoproxy/>
+</beans>
