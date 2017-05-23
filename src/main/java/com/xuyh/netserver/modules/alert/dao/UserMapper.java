@@ -11,7 +11,5 @@ import java.util.List;
  **/
 @Service
 public interface UserMapper {
-
-    public User getByLoginName(int id);
-
+     User getByLoginName(int id);
 }

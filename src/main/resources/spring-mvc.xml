@@ -22,7 +22,6 @@
 
     <mvc:annotation-driven/>
 
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="${web.view.prefix}"/>
         <property name="suffix" value="${web.view.suffix}"/>
@@ -35,7 +34,6 @@
 
     <!-- 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>
-
 
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
@@ -55,7 +53,7 @@
     </bean>
     <!-- 支持Shiro对Controller的方法级AOP安全控制 end -->
 
-    <aop:config proxy-target-class="true"></aop:config>
+    <aop:config proxy-target-class="true"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>

@@ -16,8 +16,13 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @Controller
 public class LoginController {
+
+    private final UserMapper userMapper;
+
     @Autowired
-    UserMapper userMapper;
+    public LoginController(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     @RequestMapping(value = "/login")
     public String showLoginForm(HttpServletRequest req, Model model){
@@ -34,7 +39,7 @@ public class LoginController {
         System.out.println("exception:"+exceptionClassName);
 
         User user=userMapper.getByLoginName(1);
-//        System.out.println("user:"+user);
+        System.out.println("user:"+user);
         return "login";
     }
 }

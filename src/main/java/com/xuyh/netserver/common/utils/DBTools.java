@@ -24,7 +24,11 @@ public class DBTools {
         sessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }
 
-    public  static SqlSession getSession(){
+    static SqlSession getSession(){
         return sessionFactory.openSession();
+    }
+
+    public static void main(String[] args) {
+        getSession();
     }
 }
