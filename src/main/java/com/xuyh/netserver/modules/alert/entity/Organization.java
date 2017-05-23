@@ -1,4 +1,4 @@
-package com.xuyh.netserver.modules.alert.beans;
+package com.xuyh.netserver.modules.alert.entity;
 
 import java.io.Serializable;
 

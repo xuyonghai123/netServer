@@ -75,9 +75,9 @@
 
     <!--&lt;!&ndash;<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>&ndash;&gt;-->
 
-    <!--<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
-        <!--<property name="configLocation" value="classpath:${ehcache.configFile}"/>-->
-    <!--</bean>-->
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:${ehcache.configFile}"/>
+    </bean>
 
     <!--<task:executor id="executor" pool-size="10" />-->
     <!--<task:scheduler id="scheduler" pool-size="10"/>-->

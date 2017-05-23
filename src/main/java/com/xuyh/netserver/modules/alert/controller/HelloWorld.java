@@ -17,9 +17,7 @@ public class HelloWorld {
 
     @RequestMapping("/index")
     public String home(){
-
         logger.info("记录日志信息，将在控制台输出");
-//        userService.insertUser();
         return  "index";
     }
 

@@ -168,15 +168,15 @@
     <!-- ==================输入日志，用于开发阶段使用====================== -->
     <root>
         <!--定义日志的最低输出级别-->
-        <priority value="INFO" />
+        <!--<priority value="INFO" />-->
         <!--引用的日志记录器-->
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="DEBUG" />
-        <appender-ref ref="INFO" />
-        <appender-ref ref="WARN" />
-        <appender-ref ref="ERROR" />
-        <appender-ref ref="SERVICE" />
-        <appender-ref ref="SYSLOG4J" />
+        <!--<appender-ref ref="STDOUT" />-->
+        <!--<appender-ref ref="DEBUG" />-->
+        <!--<appender-ref ref="INFO" />-->
+        <!--<appender-ref ref="WARN" />-->
+        <!--<appender-ref ref="ERROR" />-->
+        <!--<appender-ref ref="SERVICE" />-->
+        <!--<appender-ref ref="SYSLOG4J" />-->
     </root>
 
 </log4j:configuration>
