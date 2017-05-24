@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class UserRealm extends AuthorizingRealm{
 
     @Autowired
-    private UserMapper userService;
+    UserMapper userMapper;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -31,23 +31,21 @@ public class UserRealm extends AuthorizingRealm{
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)  {
+        System.out.println("user:");
         String username = (String)token.getPrincipal();
-        System.out.println("username:"+username);
-//        User user = userService.getByLoginName(username);
-        User user = new User();
-        System.out.println("user:"+user.toString());
+        User user=userMapper.getByLoginName(username);
+        System.out.println("username:"+user.getUsername());
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
-        if(Boolean.TRUE.equals(true)) {
+        if(Boolean.TRUE.equals(false)) {
             throw new LockedAccountException(); //帐号锁定
         }
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
             user.getUsername(), //用户名
-            user.getPassword().substring(16), //密码
-            ByteSource.Util.bytes(user.getUsername()),//salt=username+salt
+            user.getPassword().toCharArray(), //密码
             getName()  //realm name
         );
         return authenticationInfo;

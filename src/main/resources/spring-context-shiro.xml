@@ -13,8 +13,8 @@
     <!-- 安全认证过滤器 -->
     <bean name="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
+        <property name="successUrl" value="/index"/>
         <property name="loginUrl" value="/login"/>
-        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
@@ -23,17 +23,20 @@
         <!--Shiro权限过滤器定义 -->
         <property name="filterChainDefinitions">
             <value>
+                /qweqwe= authc
                 /index = authc
                 /login = authc
                 /logout = logout
                 /authenticated = authc
+
             </value>
         </property>
     </bean>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-
+        <property name="realm" ref="UserRealm" />
     </bean>
+    <bean id="UserRealm" class="com.xuyh.netserver.modules.alert.realm.UserRealm" />
 
     <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManager" ref="cacheManager"/>
@@ -48,6 +51,7 @@
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="rememberMeParam" value="rememberMe"/>
+        <property name="loginUrl" value="/login"/>
     </bean>
 
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->

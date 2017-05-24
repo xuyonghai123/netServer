@@ -38,8 +38,8 @@ public class LoginController {
         model.addAttribute("error", error);
         System.out.println("exception:"+exceptionClassName);
 
-        User user=userMapper.getByLoginName(1);
-        System.out.println("user:"+user);
+//        User user=userMapper.getByLoginName("xuyh");
+//        System.out.println("user:"+user);
         return "login";
     }
 }

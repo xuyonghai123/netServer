@@ -14,7 +14,7 @@
 <div class="signinpanel">
     <div class="row">
         <div class="col-sm-12">
-            <form action="/netServer/index" method="post">
+            <form action="/netServer/login" method="post">
                 <h4 class="no-margins">登录：</h4>
                 <p class="m-t-md">登录到H+后台主题UI框架</p>
                 <input type="text" name="username" class="form-control uname" placeholder="用户名" />

@@ -12,7 +12,7 @@
       <!--select  * from t_user where id=#{id}-->
     <!--</select>-->
 
-    <select id="getByLoginName" parameterType="int" resultType="User">
-        select * from t_user where id=#{id}
+    <select id="getByLoginName" parameterType="String" resultType="User">
+        select * from t_user where username=#{username}
     </select>
 </mapper>
