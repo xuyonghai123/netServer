@@ -1,6 +1,6 @@
-package com.xuyh.netserver.test.shiro;
+package com.xuyh.netserver.test.dao;
 
-import com.xuyh.netserver.modules.alert.dao.*;
+import com.xuyh.netserver.modules.sys.dao.*;
 
 /**
  * Created by Thinkpad on 17/05/24.

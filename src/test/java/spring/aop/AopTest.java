@@ -12,8 +12,6 @@ public class AopTest {
     public void testhelloworld(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-test.xml");
         IHelloWorldService helloWorldService = applicationContext.getBean("helloWorldService", IHelloWorldService.class);
-//        helloWorldService.sayHello();
-
         helloWorldService.test("xuyh",27);
     }
 }

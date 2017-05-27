@@ -1,20 +1,22 @@
-package com.xuyh.netserver.modules.alert.realm;
+package com.xuyh.netserver.modules.sys.realm;
 
-import com.xuyh.netserver.modules.alert.dao.UserMapper;
-import com.xuyh.netserver.modules.alert.entity.User;
+import com.xuyh.netserver.modules.sys.dao.UserMapper;
+import com.xuyh.netserver.modules.sys.entity.User;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Thinkpad on 17/05/07.
  **/
-@Service
+
 public class UserRealm extends AuthorizingRealm{
 
     @Autowired
@@ -23,19 +25,20 @@ public class UserRealm extends AuthorizingRealm{
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
-        System.out.println("username:"+username);
+        System.out.println("Authorization.username:"+username);
+        Set<String> set = new HashSet<String>();
+        set.add("admin");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-//        authorizationInfo.setRoles(userService.findRoles(username));
-//        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        authorizationInfo.setRoles(set);
+        authorizationInfo.setStringPermissions(set);
         return authorizationInfo;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)  {
-        System.out.println("user:");
         String username = (String)token.getPrincipal();
         User user=userMapper.getByLoginName(username);
-        System.out.println("username:"+user.getUsername());
+//        System.out.println("username:"+user);
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }

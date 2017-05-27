@@ -1,9 +1,11 @@
-package com.xuyh.netserver.modules.alert.controller;
+package com.xuyh.netserver.modules.sys.controller;
 
-import com.xuyh.netserver.modules.alert.dao.UserMapper;
-import com.xuyh.netserver.modules.alert.entity.User;
+import com.xuyh.netserver.modules.sys.dao.UserMapper;
 import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     private final UserMapper userMapper;
 
     @Autowired
@@ -28,18 +32,23 @@ public class LoginController {
     public String showLoginForm(HttpServletRequest req, Model model){
         String exceptionClassName = (String)req.getAttribute("shiroLoginFailure");
         String error = null;
+        logger.info("exception",exceptionClassName);
         if(UnknownAccountException.class.getName().equals(exceptionClassName)) {
             error = "用户名/密码错误";
-        } else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
+            logger.error(error,exceptionClassName);
+        }else if (LockedAccountException.class.getName().equals(exceptionClassName)){
+            error = "账号被冻结";
+            logger.error(error,exceptionClassName);
+        }
+        else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
             error = "用户名/密码错误";
+            logger.error(error,exceptionClassName);
         } else if(exceptionClassName != null) {
             error = "其他错误：" + exceptionClassName;
+            logger.error(error,exceptionClassName);
         }
         model.addAttribute("error", error);
-        System.out.println("exception:"+exceptionClassName);
 
-//        User user=userMapper.getByLoginName("xuyh");
-//        System.out.println("user:"+user);
         return "login";
     }
 }

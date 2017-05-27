@@ -13,6 +13,7 @@
 <body class="signin">
 <div class="signinpanel">
     <div class="row">
+        <div>${error}</div>
         <div class="col-sm-12">
             <form action="/netServer/login" method="post">
                 <h4 class="no-margins">登录：</h4>

@@ -239,7 +239,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 *        "bDeferRender": true,
 	 *        "fnInitComplete": function (o) {
 	 *          // Find where row 25 is
-	 *          alert( o.oScroller.fnRowToPixels( 25 ) );
+	 *          sys( o.oScroller.fnRowToPixels( 25 ) );
 	 *        }
 	 *      } );
 	 *    } );
@@ -283,7 +283,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 *        "bDeferRender": true,
 	 *        "fnInitComplete": function (o) {
 	 *          // Find what row number is at 500px
-	 *          alert( o.oScroller.fnPixelsToRow( 500 ) );
+	 *          sys( o.oScroller.fnPixelsToRow( 500 ) );
 	 *        }
 	 *      } );
 	 *    } );

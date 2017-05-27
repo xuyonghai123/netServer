@@ -1,4 +1,4 @@
-package com.xuyh.netserver.modules.sys;
+package com.xuyh.netserver.modules.role;
 
 import java.io.Serializable;
 import java.util.List;

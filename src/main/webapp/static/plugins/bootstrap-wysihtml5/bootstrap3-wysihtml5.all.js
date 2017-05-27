@@ -2451,7 +2451,7 @@ var wysihtml5 = {
             <ul id="ul"><li id="a">| a </li><li id="b"> b |</li></ul>
 
             var range = document.selection.createRange();
-            alert(range.parentElement().id); // Should alert "ul" but alerts "b"
+            sys(range.parentElement().id); // Should sys "ul" but alerts "b"
 
             This method returns the common ancestor node of the following:
             - the parentElement() of the textRange
@@ -5820,7 +5820,7 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  * @return {Element|String} Depends on the elementOrHtml parameter. When html then the sanitized html as string elsewise the element.
  *
  * @example
- *    var userHTML = '<div id="foo" onclick="alert(1);"><p><font color="red">foo</font><script>alert(1);</script></p></div>';
+ *    var userHTML = '<div id="foo" onclick="sys(1);"><p><font color="red">foo</font><script>sys(1);</script></p></div>';
  *    wysihtml5.dom.parse(userHTML, {
  *      tags {
  *        p:      "div",      // Rename p tags to div tags
@@ -6841,7 +6841,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
  *
  * @example
  *    new wysihtml5.dom.Sandbox(function(sandbox) {
- *      sandbox.getWindow().document.body.innerHTML = '<img src=foo.gif onerror="alert(document.cookie)">';
+ *      sandbox.getWindow().document.body.innerHTML = '<img src=foo.gif onerror="sys(document.cookie)">';
  *    });
  */
 (function(wysihtml5) {

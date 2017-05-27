@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:netServer.properties"/>-->
 
@@ -15,63 +16,25 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">-->
-        <!--<property name="driverClassName" value=""/>-->
-        <!--<property name="url" value="${jdbc.url}"/>-->
-        <!--<property name="username" value="${jdbc.username}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-        <!--<property name="initialSize" value="${jdbc.pool.init}"/>-->
-        <!--<property name="minIdle" value="${jdbc.pool.minIdle}"/>-->
-        <!--<property name="maxActive" value="${jdbc.pool.maxActive}"/>-->
-        <!--<property name="maxWait" value="60000"/>-->
-        <!--<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
-        <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
-        <!--<property name="validationQuery" value="SELECT 'X' FROM DUAL"/>-->
-        <!--<property name="testWhileIdle" value="true"/>-->
-        <!--<property name="testOnBorrow" value="false"/>-->
-        <!--<property name="testOnReturn" value="false"/>-->
-        <!--<property name="filters" value="stat"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="typeAliasesPackage" value="com.xuyh.netserver"/>-->
-        <!--<property name="typeAliasesSuperType" value="com.xuyh.netserver"/>-->
-        <!--<property name="mapperLocations" value="classpath:mapper/**/*.xml"/>-->
-        <!--<property name="configLocation" value="classpath:/mybatis.cfg.xml"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
-        <!--<property name="basePackage" value="com.xuyh.netserver"/>-->
-        <!--<property name="annotationClass" value=""/>-->
-    <!--</bean>-->
 
 
-    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
-
-    <!--<tx:advice id="txAdvice"  transaction-manager="transactionManager" >-->
-        <!--<tx:attributes>-->
-            <!--<tx:method name="create" />-->
-        <!--</tx:attributes>-->
-    <!--</tx:advice>-->
-
-    <!--<aop:config>-->
-        <!--<aop:pointcut id="createOperation" expression="execution(* com.xuyh.netserver.modules.alert.dao.UserMapper.findAllUser(..))"/>-->
-        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>-->
-    <!--</aop:config>-->
-
-    <!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
-
-    <!--&lt;!&ndash;<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>&ndash;&gt;-->
+    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->
 
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:${ehcache.configFile}"/>
     </bean>
 
-    <!--<task:executor id="executor" pool-size="10" />-->
-    <!--<task:scheduler id="scheduler" pool-size="10"/>-->
-    <!--<task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>-->
+    <task:annotation-driven />
+    <task:executor id="executor" pool-size="10" />
+    <task:scheduled-tasks scheduler="myScheduler">
+        <task:scheduled ref="scheduledTaskManager" method="autoCardCalculate" cron="1/5 * * * * *"/>
+    </task:scheduled-tasks>
+    <task:scheduler id="myScheduler" pool-size="10"/>
+
+
+    <context:component-scan base-package="com.xuyh.netserver.test.aop">
+        <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+    </context:component-scan>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>

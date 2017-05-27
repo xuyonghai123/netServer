@@ -5725,7 +5725,7 @@
 		 *
 		 *      oTable.$('td').click( function () {
 		 *        var sData = oTable.fnGetData( this );
-		 *        alert( 'The cell clicked on had the value of '+sData );
+		 *        sys( 'The cell clicked on had the value of '+sData );
 		 *      } );
 		 *    } );
 		 */
@@ -5956,7 +5956,7 @@
 		 *      var oSettings = oTable.fnSettings();
 		 *
 		 *      // Show an example parameter from the settings
-		 *      alert( oSettings._iDisplayStart );
+		 *      sys( oSettings._iDisplayStart );
 		 *    } );
 		 */
 		this.fnSettings = function()
@@ -6066,7 +6066,7 @@
 		 *  @example
 		 *    $(document).ready(function() {
 		 *      var oTable = $('#example').dataTable();
-		 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
+		 *      sys( oTable.fnVersionCheck( '1.9.0' ) );
 		 *    } );
 		 */
 		this.fnVersionCheck = _ext.fnVersionCheck;
@@ -8802,7 +8802,7 @@
 	 *  @dtopt API-Static
 	 *
 	 *  @example
-	 *    alert( $.fn.dataTable.versionCheck( '1.9.0' ) );
+	 *    sys( $.fn.dataTable.versionCheck( '1.9.0' ) );
 	 */
 	DataTable.versionCheck = DataTable.fnVersionCheck = function( version )
 	{
@@ -13530,11 +13530,11 @@
 		/**
 		 * Error reporting.
 		 * 
-		 * How should DataTables report an error. Can take the value 'alert',
+		 * How should DataTables report an error. Can take the value 'sys',
 		 * 'throw', 'none' or a function.
 		 *
 		 *  @type string|function
-		 *  @default alert
+		 *  @default sys
 		 */
 		errMode: "alert",
 	

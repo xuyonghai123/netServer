@@ -1336,7 +1336,7 @@ FixedColumns.defaults = /** @lends FixedColumns.defaults */{
 	 *      } );
 	 *      new $.fn.dataTable.fixedColumns( table, {
 	 *          "drawCallback": function () {
-	 *	            alert( "FixedColumns redraw" );
+	 *	            sys( "FixedColumns redraw" );
 	 *	        }
 	 *      } );
 	 */

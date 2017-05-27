@@ -1257,7 +1257,7 @@ ColReorder.defaults = {
 	 *          "sDom": 'Rlfrtip',
 	 *          "oColReorder": {
 	 *              "fnReorderCallback": function () {
-	 *                  alert( 'Columns reordered' );
+	 *                  sys( 'Columns reordered' );
 	 *              }
 	 *          }
 	 *      } );
@@ -1268,7 +1268,7 @@ ColReorder.defaults = {
 	 *
 	 *      new $.fn.dataTable.ColReorder( '#example', {
 	 *          "fnReorderCallback": function () {
-	 *              alert( 'Columns reordered' );
+	 *              sys( 'Columns reordered' );
 	 *          }
 	 *      } );
 	 */

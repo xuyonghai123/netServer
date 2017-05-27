@@ -1,10 +1,8 @@
-package com.xuyh.netserver.modules.alert.dao;
+package com.xuyh.netserver.modules.sys.dao;
 
 
-import com.xuyh.netserver.modules.alert.entity.User;
+import com.xuyh.netserver.modules.sys.entity.User;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by Thinkpad on 17/04/13.
@@ -12,4 +10,6 @@ import java.util.List;
 @Service
 public interface UserMapper {
      User getByLoginName(String username);
+
+     void insert(User user);
 }
