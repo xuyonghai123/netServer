@@ -7,8 +7,8 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @Controller
 public class HelloWorld {
+
     @Autowired
     private UserService userService;
 
@@ -30,9 +31,7 @@ public class HelloWorld {
     @RequestMapping("/index")
     public String home(){
         logger.info("记录日志信息，将在控制台输出");
-
         userService.sayHello();
-
         User user = new User();
         user.setUsername("test");
         user.setPassword("xuyh");
