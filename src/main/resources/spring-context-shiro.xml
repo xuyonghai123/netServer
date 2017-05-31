@@ -40,7 +40,7 @@
     <bean id="userRealm" class="com.xuyh.netserver.modules.sys.realm.UserRealm" />
 
     <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <!--<property name="cacheManager" ref="cacheManager"/>-->
+        <property name="cacheManager" ref="cacheManager"/>
     </bean>
 
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">

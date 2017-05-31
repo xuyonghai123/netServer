@@ -38,9 +38,13 @@ public class UserRealm extends AuthorizingRealm{
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)  {
         String username = (String)token.getPrincipal();
         User user=userMapper.getByLoginName(username);
-//        System.out.println("username:"+user);
+
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
+        }else {
+            System.out.println("user:"+user);
+            System.out.println("user:"+user.getName());
+            System.out.println("user:"+user.getEmail());
         }
         if(Boolean.TRUE.equals(false)) {
             throw new LockedAccountException(); //帐号锁定

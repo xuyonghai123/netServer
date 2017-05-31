@@ -32,11 +32,11 @@ public class HelloWorld {
     public String home(){
         logger.info("记录日志信息，将在控制台输出");
         userService.sayHello();
-        User user = new User();
-        user.setUsername("test");
-        user.setPassword("xuyh");
-        user.setAccount(100.1);
-        userMapper.insert(user);
+//        User user = new User();
+//        user.setUsername("test");
+//        user.setPassword("xuyh");
+//        user.setAccount(100.1);
+//        userMapper.insert(user);
         return  "index";
     }
 

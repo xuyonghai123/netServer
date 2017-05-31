@@ -230,6 +230,13 @@
     </dependency>
     <!-- AOP end -->
 
+    <!-- google java lib -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
     <!-- jackson json -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

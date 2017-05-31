@@ -47,6 +47,7 @@ public class LoginController {
             error = "其他错误：" + exceptionClassName;
             logger.error(error,exceptionClassName);
         }
+        logger.error("error:",error);
         model.addAttribute("error", error);
 
         return "login";

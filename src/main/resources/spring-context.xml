@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-   <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:netServer.properties"/>-->
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:netServer.properties"/>-->
 
     <!--加载应用属性实例，可通过＠value的方式引用-->
     <!--<util:properties id="APP_PROP" location="classpath:netServer.properties" local-override="true"/>-->
@@ -16,14 +16,13 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-
-
     <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->
-
+    <!--缓存-->
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:${ehcache.configFile}"/>
     </bean>
 
+    <!--定时任务-->
     <task:annotation-driven />
     <task:executor id="executor" pool-size="10" />
     <task:scheduled-tasks scheduler="myScheduler">
@@ -31,10 +30,10 @@
     </task:scheduled-tasks>
     <task:scheduler id="myScheduler" pool-size="10"/>
 
-
+    <!--Spring Aop-->
     <context:component-scan base-package="com.xuyh.netserver.test.aop">
         <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
     </context:component-scan>
-
     <aop:aspectj-autoproxy proxy-target-class="true"/>
+
 </beans>
