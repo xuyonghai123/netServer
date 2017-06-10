@@ -58,7 +58,6 @@ public class UserRealm extends AuthorizingRealm{
         }
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         byte[] salt = Encodes.decodeHex(user.getPassword().substring(0,16));
-
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
             user.getLoginName(), //用户名
             user.getPassword().substring(16), //密码
