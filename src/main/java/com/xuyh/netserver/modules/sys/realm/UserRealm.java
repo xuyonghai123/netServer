@@ -44,9 +44,7 @@ public class UserRealm extends AuthorizingRealm{
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)  {
-
         String username = (String)token.getPrincipal();
-//        User user=userMapper.getByLoginName(username);
         User user1 = new User();
         user1.setLoginName(username);
         User user=userDao.getByLoginName(user1);
