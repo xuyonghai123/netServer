@@ -1,0 +1,6 @@
+[ERROR][2017-06-01 16:24:25,223][com.xuyh.netserver.modules.sys.controller.LoginController][用户名/密码错误]
+[ERROR][2017-06-01 16:24:25,227][com.xuyh.netserver.modules.sys.controller.LoginController][error:]
+[ERROR][2017-06-01 16:24:27,952][com.xuyh.netserver.modules.sys.controller.LoginController][用户名/密码错误]
+[ERROR][2017-06-01 16:24:27,953][com.xuyh.netserver.modules.sys.controller.LoginController][error:]
+[ERROR][2017-06-01 16:24:39,634][com.xuyh.netserver.modules.sys.controller.LoginController][其他错误：org.apache.shiro.authc.AuthenticationException]
+[ERROR][2017-06-01 16:24:39,635][com.xuyh.netserver.modules.sys.controller.LoginController][error:]
