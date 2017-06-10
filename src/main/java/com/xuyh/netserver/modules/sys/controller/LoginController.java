@@ -28,6 +28,10 @@ public class LoginController {
         this.userMapper = userMapper;
     }
 
+
+    /***
+     * 返回登录页面
+     * */
     @RequestMapping(value = "/login")
     public String showLoginForm(HttpServletRequest req, Model model){
         String exceptionClassName = (String)req.getAttribute("shiroLoginFailure");
@@ -49,7 +53,6 @@ public class LoginController {
         }
         logger.error("error:",error);
         model.addAttribute("error", error);
-
         return "login";
     }
 }

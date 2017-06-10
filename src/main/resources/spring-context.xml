@@ -6,8 +6,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:netServer.properties"/>-->
-
     <!--加载应用属性实例，可通过＠value的方式引用-->
     <!--<util:properties id="APP_PROP" location="classpath:netServer.properties" local-override="true"/>-->
 
@@ -23,12 +21,12 @@
     </bean>
 
     <!--定时任务-->
-    <task:annotation-driven />
-    <task:executor id="executor" pool-size="10" />
-    <task:scheduled-tasks scheduler="myScheduler">
-        <task:scheduled ref="scheduledTaskManager" method="autoCardCalculate" cron="1/5 * * * * *"/>
-    </task:scheduled-tasks>
-    <task:scheduler id="myScheduler" pool-size="10"/>
+    <!--<task:annotation-driven />-->
+    <!--<task:executor id="executor" pool-size="10" />-->
+    <!--<task:scheduled-tasks scheduler="myScheduler">-->
+        <!--<task:scheduled ref="scheduledTaskManager" method="autoCardCalculate" cron="1/5 * * * * *"/>-->
+    <!--</task:scheduled-tasks>-->
+    <!--<task:scheduler id="myScheduler" pool-size="10"/>-->
 
     <!--Spring Aop-->
     <context:component-scan base-package="com.xuyh.netserver.test.aop">

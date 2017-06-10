@@ -17,6 +17,7 @@ public class UserService implements IUserService{
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
     public void sayHello(){
+        System.out.println();
         System.out.println("测试AOP");
     }
 

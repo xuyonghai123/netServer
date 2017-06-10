@@ -15,7 +15,7 @@ public class User implements Serializable {
     private Office company;	// 归属公司
     private Office office;	// 归属部门
     private Integer id;
-    private String username;
+    private String loginName;
     private String password;
     private Double account;
     private String no;		// 工号
@@ -39,17 +39,17 @@ public class User implements Serializable {
         super();
     }
 
-    public User(String username, String password, Double account) {
+    public User(String loginName, String password, Double account) {
         super();
-        this.username = username;
+        this.loginName = loginName;
         this.password = password;
         this.account = account;
     }
 
-    public User(Integer id, String username, String password, Double account) {
+    public User(Integer id, String loginName, String password, Double account) {
         super();
         this.id = id;
-        this.username = username;
+        this.loginName = loginName;
         this.password = password;
         this.account = account;
     }
@@ -198,12 +198,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getPassword() {
@@ -224,7 +224,7 @@ public class User implements Serializable {
                 "company=" + company +
                 ", office=" + office +
                 ", id=" + id +
-                ", username='" + username + '\'' +
+                ", loginName='" + loginName + '\'' +
                 ", password='" + password + '\'' +
                 ", account=" + account +
                 ", no='" + no + '\'' +

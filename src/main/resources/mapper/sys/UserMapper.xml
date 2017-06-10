@@ -13,7 +13,7 @@
     <!--</select>-->
 
     <select id="getByLoginName" parameterType="String" resultType="User">
-        select * from t_user where username=#{username}
+        select * from t_user where loginName=#{loginName}
     </select>
 
     <insert id="insert">
@@ -29,4 +29,8 @@
             #{account}
 		)
     </insert>
+
+	<select id="findAllUser" resultType="User">
+		 select * from t_user
+	</select>
 </mapper>

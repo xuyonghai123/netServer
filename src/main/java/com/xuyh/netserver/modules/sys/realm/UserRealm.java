@@ -1,15 +1,20 @@
 package com.xuyh.netserver.modules.sys.realm;
 
+import com.xuyh.netserver.common.utils.Encodes;
+import com.xuyh.netserver.modules.sys.dao.UserDao;
 import com.xuyh.netserver.modules.sys.dao.UserMapper;
 import com.xuyh.netserver.modules.sys.entity.User;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +26,9 @@ public class UserRealm extends AuthorizingRealm{
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    UserDao userDao;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -36,25 +44,34 @@ public class UserRealm extends AuthorizingRealm{
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)  {
-        String username = (String)token.getPrincipal();
-        User user=userMapper.getByLoginName(username);
 
+        String username = (String)token.getPrincipal();
+//        User user=userMapper.getByLoginName(username);
+        User user1 = new User();
+        user1.setLoginName(username);
+        User user=userDao.getByLoginName(user1);
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
-        }else {
-            System.out.println("user:"+user);
-            System.out.println("user:"+user.getName());
-            System.out.println("user:"+user.getEmail());
         }
         if(Boolean.TRUE.equals(false)) {
             throw new LockedAccountException(); //帐号锁定
         }
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
+        byte[] salt = Encodes.decodeHex(user.getPassword().substring(0,16));
+
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-            user.getUsername(), //用户名
-            user.getPassword().toCharArray(), //密码
+            user.getLoginName(), //用户名
+            user.getPassword().substring(16), //密码
+            ByteSource.Util.bytes(salt),
             getName()  //realm name
         );
         return authenticationInfo;
+    }
+
+    @PostConstruct
+    public void initCredentialsMatcher() {
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher("SHA-1");
+        matcher.setHashIterations(1024);
+        setCredentialsMatcher(matcher);
     }
 }

@@ -33,6 +33,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.xuyh.netserver.modules.sys.entity"/>
         <property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
+        <property name="configLocation" value="classpath:/mybatis-config.xml"/>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
@@ -47,18 +48,12 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-
     <tx:annotation-driven transaction-manager="transactionManager" />
     <tx:advice id="txAdvice"  transaction-manager="transactionManager" >
         <tx:attributes>
             <tx:method name="create" />
         </tx:attributes>
     </tx:advice>
-
-    <!--<aop:config>-->
-        <!--<aop:pointcut id="createOperation" expression="execution(* com.xuyh.netserver.modules.sys.dao.UserMapper.getByLoginName(..))"/>-->
-        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>-->
-    <!--</aop:config>-->
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
