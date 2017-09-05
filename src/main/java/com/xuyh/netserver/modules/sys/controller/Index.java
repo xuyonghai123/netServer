@@ -1,7 +1,6 @@
 package com.xuyh.netserver.modules.sys.controller;
 
 import com.xuyh.netserver.modules.sys.dao.UserDao;
-import com.xuyh.netserver.modules.sys.dao.UserMapper;
 import com.xuyh.netserver.modules.sys.entity.User;
 import com.xuyh.netserver.modules.sys.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -9,13 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,13 +23,10 @@ import java.util.Map;
  * Created by Thinkpad on 17/04/12.
  **/
 @Controller
-public class HelloWorld {
+public class Index {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    UserMapper userMapper;
 
     @Autowired
     UserDao userDao;
@@ -59,7 +55,6 @@ public class HelloWorld {
      * */
     @RequestMapping("/netserver")
     public String index (){
-        System.out.println();
         return  "login";
     }
 
@@ -80,8 +75,14 @@ public class HelloWorld {
     @RequestMapping("/json")
     @ResponseBody
     public List<User> json (){
-        logger.info("user:"+userMapper.findAllUser());
-        return userMapper.findAllUser();
+//        List<User> list = userDao.findAll();
+//        System.out.println(list);
+
+        List list = new ArrayList();
+        List<User> user = userDao.findAll();
+
+
+        return user;
     }
 
     @RequestMapping("/success1")
@@ -91,11 +92,15 @@ public class HelloWorld {
         return "success";
     }
 
+    @ResponseBody
     @RequestMapping("/success2/{name}")
-    public String findbyname1(@PathVariable("name") String name, Map<String,Object> model){
+    public User findbyname1(@PathVariable("name") String name, Map<String,Object> model){
+        List list = new ArrayList();
         User user = userDao.getByLoginName(new User(name,null,null));
-        model.put("user",user);
-        return "success";
+
+        list.add(user);
+        return user;
+
     }
 
     @RequestMapping("/success3")

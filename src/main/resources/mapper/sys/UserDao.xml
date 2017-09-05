@@ -146,6 +146,12 @@
         WHERE a.login_name = #{loginName}
     </select>
 
+    <select id="findAll" resultType="User" >
+        SELECT
+        <include refid="userColumns"/>
+        FROM sys_user a
+        <include refid="userJoins"/>
+    </select>
     <!-- 分页查询用户信息 -->
     <select id="findList" resultType="User">
         SELECT

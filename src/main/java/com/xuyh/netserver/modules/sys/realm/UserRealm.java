@@ -2,7 +2,6 @@ package com.xuyh.netserver.modules.sys.realm;
 
 import com.xuyh.netserver.common.utils.Encodes;
 import com.xuyh.netserver.modules.sys.dao.UserDao;
-import com.xuyh.netserver.modules.sys.dao.UserMapper;
 import com.xuyh.netserver.modules.sys.entity.User;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -12,7 +11,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -23,9 +21,6 @@ import java.util.Set;
  **/
 
 public class UserRealm extends AuthorizingRealm{
-
-    @Autowired
-    UserMapper userMapper;
 
     @Autowired
     UserDao userDao;

@@ -20,14 +20,19 @@ public class HelloTest {
             根据指定类型类型返回一个bean，
             根据指定类型返回一个键值为名字和值为bean对象的map，如果没有bean对象存在则返回空
         */
-        HelloApi helloApi = context.getBean("helloid",HelloApi.class);
 
-        HelloApi helloApi1 = context.getBean("bean1",HelloApi.class);
+        MessageEvent event = new MessageEvent("", "my name is wy");
+
+        context.publishEvent(event);
+
+//        HelloApi helloApi = context.getBean("helloid",HelloApi.class);
+
+//        HelloApi helloApi1 = context.getBean("bean1",HelloApi.class);
 
 //        HelloApi helloApi1 = context.getBean(HelloApi.class);
 //        Map map = context.getBeansOfType(HelloApi.class);
-        helloApi.sayhello();
-        helloApi1.sayhello();
+//        helloApi.sayhello();
+//        helloApi1.sayhello();
 //        System.out.println(map);
         //3.使用bean
 //        helloApi.sayhello();

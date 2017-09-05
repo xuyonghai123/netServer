@@ -13,4 +13,5 @@ public interface UserDao {
 
     User getByLoginName(User user);
 
+    List<User> findAll();
 }

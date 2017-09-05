@@ -1,13 +1,7 @@
 # netServer 企业信息化快速开发平台
-
 平台简介：
-
-
-
 ## 技术选型
-
 1、后端
-
 * 核心框架：Spring Framework 4.1
 * 安全框架：Apache Shiro 1.2
 * 视图框架：Spring MVC 4.1
@@ -22,7 +16,6 @@
 * 工具类：Apache Commons、Jackson 2.2、Xstream 1.4、Dozer 5.3、POI 3.9
 
 2、前端
-
 * JS框架：jQuery 1.9
 * CSS框架：Twitter Bootstrap 2.3.1（稳定是后台，UI方面根据需求自己升级改造吧）。
 * 客户端验证：JQuery Validation Plugin 1.11。

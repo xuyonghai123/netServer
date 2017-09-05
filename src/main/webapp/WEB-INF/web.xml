@@ -34,6 +34,9 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+
+
+
   <!-- Apache Shiro -->
   <filter>
     <filter-name>shiroFilter</filter-name>
@@ -47,6 +50,21 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <!-- SiteMesh -->
+  <filter>
+    <filter-name>sitemeshFilter</filter-name>
+    <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>sitemeshFilter</filter-name>
+    <url-pattern>/netServer/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>sitemeshFilter</filter-name>
+    <url-pattern>/netServera/*</url-pattern>
+  </filter-mapping>
+
 
   <!-- Spring MVC配置 -->
   <servlet>
@@ -76,6 +94,17 @@
     <servlet-name>DruidStatView</servlet-name>
     <url-pattern>/druid/*</url-pattern>
   </servlet-mapping>
+
+  <!-- Validate code -->
+  <servlet>
+    <servlet-name>ValidateCodeServlet</servlet-name>
+    <servlet-class>com.xuyh.netserver.common.servlet.ValidateCodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidateCodeServlet</servlet-name>
+    <url-pattern>/servlet/validateCodeServlet</url-pattern>
+  </servlet-mapping>
+
 
   <!-- Log4jg配置 -->
   <context-param>

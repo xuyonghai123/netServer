@@ -1,6 +1,5 @@
 package com.xuyh.netserver.modules.sys.controller;
 
-import com.xuyh.netserver.modules.sys.dao.UserMapper;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -20,14 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-
-    private final UserMapper userMapper;
-
-    @Autowired
-    public LoginController(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
 
     /***
      * 返回登录页面

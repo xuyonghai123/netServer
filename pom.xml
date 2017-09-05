@@ -18,6 +18,7 @@
     <ehcache.version>2.6.11</ehcache.version>
     <ehcache-web.version>2.0.4</ehcache-web.version>
     <shiro.version>1.2.3</shiro.version>
+    <sitemesh.version>2.4.2</sitemesh.version>
     <slf4j.version>1.7.7</slf4j.version>
     <!-- jdbc driver setting -->
     <mysql.driver.version>5.1.30</mysql.driver.version>
@@ -116,11 +117,17 @@
     </dependency>
 
     <dependency>
-      <groupId>taglibs</groupId>
-      <artifactId>standard</artifactId>
-      <version>1.1.2</version>
-      <type>jar</type>
+      <groupId>opensymphony</groupId>
+      <artifactId>sitemesh</artifactId>
+      <version>${sitemesh.version}</version>
     </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>taglibs</groupId>-->
+      <!--<artifactId>standard</artifactId>-->
+      <!--<version>1.1.2</version>-->
+      <!--<type>jar</type>-->
+    <!--</dependency>-->
     <!-- WEB begin -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -133,7 +140,19 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
 
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+      <type>jar</type>
+    </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -338,6 +357,12 @@
     </dependency>
     <!-- LOGGING end -->
 
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_2.10</artifactId>
+      <version>0.8.2.2</version>
+    </dependency>
+
     <!-- GENERAL UTILS begin -->
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -371,6 +396,12 @@
       </exclusions>
     </dependency>
 
+    <!-- xstream xml -->
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>${xstream.version}</version>
+    </dependency>
 </dependencies>
 
 </project>

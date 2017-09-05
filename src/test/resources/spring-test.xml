@@ -21,6 +21,7 @@
             <!--<aop:after pointcut-ref="pointcut" method="afterHandler"/>-->
         <!--</aop:aspect>-->
     <!--</aop:config>-->
+    <bean class = "spring.MessageListener"></bean>
 
     <context:component-scan base-package="spring.aop">
         <context:include-filter type="annotation"

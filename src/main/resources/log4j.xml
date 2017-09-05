@@ -4,7 +4,7 @@
 
     <!--输出到控制台-->
     <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
-        <param name="threshold" value="ERROR" />
+        <param name="threshold" value="DEBUG" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%p][%d{ISO8601}][%c][%m]%n" />
         </layout>
@@ -170,7 +170,7 @@
     <!-- ==================输入日志，用于开发阶段使用====================== -->
     <root>
         <!--定义日志的最低输出级别-->
-        <priority value="ERROR" />
+        <priority value="DEBUG" />
         <!--引用的日志记录器-->
         <appender-ref ref="STDOUT" />
         <appender-ref ref="DEBUG" />
